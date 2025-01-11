@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/locations")
+@CrossOrigin(origins = "http://localhost:4200")
 public class LocationController {
     private final LocationService locationService;
 
@@ -18,5 +19,11 @@ public class LocationController {
     @GetMapping
     public List<Location> getAllLocations() {
         return locationService.getAllLocations();
+    }
+
+    // Pobiera lokalizację na podstawie ID
+    @GetMapping("/{id}")
+    public Location getLocationById(@PathVariable Long id) {
+        return locationService.getAllLocationById(id);
     }
 }

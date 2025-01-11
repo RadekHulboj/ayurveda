@@ -5,6 +5,7 @@ import eu.hulboj.Ayurveda.repositories.LocationRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class LocationService {
@@ -16,6 +17,14 @@ public class LocationService {
 
     public List<Location> getAllLocations() {
         return locationRepository.findAll();
+    }
+
+    public Location getAllLocationById(Long id) {
+        return locationRepository.findAll()
+                .stream()
+                .filter(location -> Objects.equals(location.getId(), id))
+                .findFirst()
+                .orElse(getAllLocations().get(0));
     }
 
     public void saveAll(List<Location> locations) {
