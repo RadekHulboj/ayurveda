@@ -26,6 +26,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
 	implementation 'com.azure.spring:spring-cloud-azure-starter-keyvault-secrets:4.6.0'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
