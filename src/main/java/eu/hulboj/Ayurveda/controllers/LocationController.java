@@ -21,7 +21,6 @@ public class LocationController {
         return locationService.getAllLocations();
     }
 
-    // Pobiera lokalizację na podstawie ID
     @GetMapping("/{id}")
     public Location getLocationById(@PathVariable Long id) {
         return locationService.getAllLocationById(id);
