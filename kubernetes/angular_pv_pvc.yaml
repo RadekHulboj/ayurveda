@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: angular-code-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /path/to/ajurweda # Ścieżka do kodu na hoście (jeśli lokalny serwer)
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: angular-code-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
