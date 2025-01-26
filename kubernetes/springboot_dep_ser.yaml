@@ -35,6 +35,8 @@ spec:
               value: "org.hibernate.dialect.H2Dialect"
             - name: AZURE_KEYVAULT_URI
               value: "https://ayurveda-eu.vault.azure.net/"
+            - name:  AYURVEDA_ALLOWED_CROSS_ORIGIN
+              value: "http://localhost:4200"
             - name: SPRING_CLOUD_AZURE_KEYVAULT_CLIENT_ID
               valueFrom:
                 secretKeyRef:

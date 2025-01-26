@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api/contact")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "${ayurveda.allowed.cross.origin}")
 public class ContactController {
 
     private static final Logger logger = LoggerFactory.getLogger(ContactController.class);

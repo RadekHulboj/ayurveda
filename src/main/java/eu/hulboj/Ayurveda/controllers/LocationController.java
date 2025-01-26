@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/locations")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "${ayurveda.allowed.cross.origin}")
 public class LocationController {
     private final LocationService locationService;
 
