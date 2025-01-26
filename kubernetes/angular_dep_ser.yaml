@@ -17,16 +17,17 @@ spec:
       containers:
         - name: angular-app
           image: angular-app:latest
+          imagePullPolicy: Never
           ports:
             - containerPort: 4200
-          volumeMounts:
-            - mountPath: /usr/src/app
-              name: angular-code
+#          volumeMounts:
+#            - mountPath: /usr/src/app
+#              name: angular-code
           command: ["sh", "-c", "npm install && ng serve --host 0.0.0.0 --disable-host-check"]
-      volumes:
-        - name: angular-code
-          persistentVolumeClaim:
-            claimName: angular-code-pvc
+#      volumes:
+#        - name: angular-code
+#          persistentVolumeClaim:
+#            claimName: angular-code-pvc
 
 ---
 apiVersion: v1

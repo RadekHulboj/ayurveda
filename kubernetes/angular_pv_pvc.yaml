@@ -9,7 +9,7 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   hostPath:
-    path: /path/to/ajurweda # Ścieżka do kodu na hoście (jeśli lokalny serwer)
+    path: /home/radek/Projects/hulboj/Ayurveda/
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
