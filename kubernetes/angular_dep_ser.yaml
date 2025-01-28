@@ -20,14 +20,7 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 4200
-#          volumeMounts:
-#            - mountPath: /usr/src/app
-#              name: angular-code
-          command: ["sh", "-c", "npm install && ng serve --host 0.0.0.0 --disable-host-check"]
-#      volumes:
-#        - name: angular-code
-#          persistentVolumeClaim:
-#            claimName: angular-code-pvc
+          command: ["sh", "-c", "npm install && ng serve --proxy-config proxy.conf.json --host 0.0.0.0 --disable-host-check"]
 
 ---
 apiVersion: v1
