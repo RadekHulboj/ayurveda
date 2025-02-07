@@ -3,6 +3,7 @@ package eu.hulboj.Ayurveda.services;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+@Deprecated
 @Service
 public class SecretService {
 

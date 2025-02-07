@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ayurveda-server
+  labels:
+    app: ayurveda-server
+spec:
+  replicas: {{ .Values.backend.replicas }}
+  selector:
+    matchLabels:
+      app: ayurveda-server
+  template:
+    metadata:
+      labels:
+        app: ayurveda-server
+    spec:
+      containers:
+        - name: ayurveda-server
+          image: {{ .Values.backend.image }}
+          imagePullPolicy: Never
+          ports:
+            - containerPort: {{ .Values.backend.service.port }}
+          env:
+            - name: SPRING_APPLICATION_NAME
+              value: "Ayurveda"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:h2:mem:testdb"
+            - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+              value: "org.h2.Driver"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "sa"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: ""
+            - name: SPRING_JPA_DATABASE_PLATFORM
+              value: "org.hibernate.dialect.H2Dialect"
+            - name: AZURE_KEYVAULT_URI
+              value: "https://ayurveda-eu.vault.azure.net/"
+            - name:  AYURVEDA_ALLOWED_CROSS_ORIGIN
+              value: "http://angular-app-service:4200"
+            - name: SPRING_CLOUD_AZURE_KEYVAULT_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: ayurveda-secrets
+                  key: ayurveda_client_id
+            - name: SPRING_CLOUD_AZURE_KEYVAULT_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: ayurveda-secrets
+                  key: ayurveda_client_secret
+            - name: SPRING_CLOUD_AZURE_KEYVAULT_TENANT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: ayurveda-secrets
+                  key: ayurveda_tenant_id
+            - name: SPRING_CLOUD_AZURE_KEYVAULT_ENABLED
+              value: "true"
+            - name: AYURVEDA_AZURE_EMAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ayurveda-secrets
+                  key: ayurveda_email
+            - name: AYURVEDA_AZURE_KEYVAULT_EMAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ayurveda-secrets
+                  key: ayurveda_email_keyvault
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ayurveda-server-service
+spec:
+  selector:
+    app: ayurveda-server
+  ports:
+    - protocol: TCP
+      port: {{ .Values.backend.service.port }}
+      targetPort: {{ .Values.backend.service.port }}
+  type: ClusterIP

@@ -1,0 +1,5 @@
+apiVersion: v2
+name: ayurveda
+version: 0.1.0
+description: Helm chart for Ayurveda Angular and Spring Boot applications
+type: application

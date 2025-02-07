@@ -1,0 +1,20 @@
+angular:
+  image: angular-app:latest
+  replicas: 1
+  service:
+    type: NodePort
+    port: 4200
+
+backend:
+  image: ayurveda-server:latest
+  replicas: 1
+  service:
+    type: ClusterIP
+    port: 8080
+
+secrets:
+  ayurveda_client_id: NDE3MTg4NzYtYjY2Ny00ZjU1LThkZjAtMzU2YzU3OTkxYmZl
+  ayurveda_client_secret: NzIwZGY4OWEtYjVkYS00ZjNkLWI2NWQtM2Q5MWJlZGM4ZmYz
+  ayurveda_tenant_id: YjAxMzgwNDQtYjBlZC00NGE0LWEyOGUtNzUzNTY4Nzc5Zjli
+  ayurveda_email_keyvault: YXl1cnZlZGEtZW1haWw=
+  ayurveda_email: enNzbWFxb254b3JhaWVhZQ==
