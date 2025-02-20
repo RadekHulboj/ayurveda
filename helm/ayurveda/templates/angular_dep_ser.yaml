@@ -20,7 +20,10 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: {{ .Values.angular.service.port }}
-          command: ["sh", "-c", "npm install && ng serve --proxy-config proxy.conf.json --host 0.0.0.0 --disable-host-check"]
+          command: ["sh", "-c", "npm install && ng serve --proxy-config proxy.conf.js --host 0.0.0.0 --disable-host-check"]
+          env:
+            - name: API_TARGET
+              value: "http://ayurveda-server-service:8080"
 
 ---
 apiVersion: v1
